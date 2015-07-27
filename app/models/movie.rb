@@ -22,6 +22,14 @@ class Movie < ActiveRecord::Base
 
   validate :release_date_in_the_future
 
+  def review_average
+    if reviews.size < 1
+      return 0
+    else
+      reviews.sum(:rating_out_of_ten)/reviews.size 
+    end
+  end
+
   protected
 
   def release_date_in_the_future
