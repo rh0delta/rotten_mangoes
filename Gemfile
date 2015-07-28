@@ -33,6 +33,11 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Sass Bootstrap for styling
 gem 'bootstrap-sass'
 
+# Use CarrierWave for file uploads
+gem 'rmagick'
+gem 'carrierwave'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -1,8 +1,16 @@
 <h1>Rotten Mangoes</h1>
-<%= link_to "Submit a movie!", new_movie_path %>
+<% if current_user %>
+  <%= link_to "Submit a movie!", new_movie_path %>
+<% else %>
+  <p>Please <%= link_to "log in", new_session_path %> to submit a movie!</p>
+<% end %>
 <hr>
 <% @movies.each do |movie| %>
-  <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
+  <% if movie.image_url.nil? %>
+    <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
+  <% else %>
+    <%= image_tag movie.image_url.to_s %>
+  <% end %>
   <h2><%= link_to movie.title, movie_path(movie) %></h2>
   <h3><%= formatted_date(movie.release_date) %></h3>
   <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
