@@ -1,0 +1,20 @@
+<%= link_to "Back to all movies", movies_path %><br/>
+<hr>
+
+
+<h1>Users</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Action</th>
+  </tr>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.full_name %></td>
+    <td><%= user.email %></td>
+    <td><h5>(<%= link_to "delete", session_path("current"), method: :delete, confirm: "You sure?" %>)</h5>
+    </td>
+  </tr>
+<% end %>
+</table>

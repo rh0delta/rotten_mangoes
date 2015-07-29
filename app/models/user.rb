@@ -19,4 +19,6 @@ class User < ActiveRecord::Base
     "#{firstname} #{lastname}"
   end
 
+  
+
 end

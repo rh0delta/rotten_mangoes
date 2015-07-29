@@ -9,7 +9,7 @@
   <% if movie.image_url.nil? %>
     <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
   <% else %>
-    <%= image_tag movie.image_url.to_s %>
+    <%= image_tag movie.image_url(:thumb).to_s %>
   <% end %>
   <h2><%= link_to movie.title, movie_path(movie) %></h2>
   <h3><%= formatted_date(movie.release_date) %></h3>
