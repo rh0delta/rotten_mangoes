@@ -38,7 +38,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
     session[:user_id] = nil
+    UserMailer.destroy_email(@user).deliver_later
+    @user.destroy
     redirect_to movies_path, notice: "Adios!"
   end
 
