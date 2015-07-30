@@ -24,6 +24,27 @@ class Movie < ActiveRecord::Base
 
   validate :release_date_in_the_future
 
+  scope :with_title_like, -> (title) {
+    where("title LIKE ?", "%title%")
+  }
+
+  scope :with_director_like, -> (director) {
+    where("director LIKE ?", "%#director%")
+  }
+
+  scope :under_ninety, -> (duration){
+    where("runtime_in_minutes < ?", duration)
+  }
+
+  scope :between_ninety_and_onetwenty, -> (duration){
+    where("runtime_in_minutes <= ?", duration)
+  }
+
+  scope :over_onetwenty, -> (duration){
+    where("runtime_in_minutes > ?", duration)
+  }
+
+
   def review_average
     if reviews.size < 1
       return 0

@@ -1,6 +1,18 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie
+    @movies = @movies.with_title_like(params[:title]) unless params[:title].blank?    
+    @movies = @movies.with_director_like(params[:director]) unless params[:director].blank?
+    unless params[:runtime_in_minutes].blank?
+      if params[:runtime_in_minutes] == "90"
+        @movies = @movies.under_ninety(params[:runtime_in_minutes])
+      elsif params[:runtime_in_minutes] == "120"
+        @movies = @movies.between_ninety_and_onetwenty(params[:runtime_in_minutes])
+      else
+        @movies = @movies.over_onetwenty(params[:runtime_in_minutes])
+      end
+    end
+    @movies = @movies.all.order(:runtime_in_minutes)
   end
 
   def show
