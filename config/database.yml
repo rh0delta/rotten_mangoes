@@ -21,5 +21,7 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: ENV['DATABASE_URL']
+  adapter: postgresql
+  database: d922r1iadcnpc0
+  pool: 5
+  timeout: 500
